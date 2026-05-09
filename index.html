@@ -1516,9 +1516,8 @@ footer {
   const forceIntro = url.searchParams.has('intro');
   const skipIntro = url.searchParams.has('noIntro');
   const seen = !forceIntro && sessionStorage.getItem(STORAGE_KEY);
-  const reducedMotion = !forceIntro && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  console.log('[INTRO] State — forceIntro:', forceIntro, '| seen:', !!seen, '| reducedMotion:', reducedMotion, '| skipIntro:', skipIntro);
+  console.log('[INTRO] State — forceIntro:', forceIntro, '| seen:', !!seen, '| skipIntro:', skipIntro);
 
   function killIntro(immediate) {
     console.log('[INTRO] killIntro called, immediate:', immediate);
@@ -1533,7 +1532,7 @@ footer {
     sessionStorage.setItem(STORAGE_KEY, '1');
   }
 
-  if (skipIntro || seen || reducedMotion) {
+  if (skipIntro || seen) {
     console.log('[INTRO] Skipping animation');
     killIntro(true);
     return;
